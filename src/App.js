@@ -1,12 +1,13 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import "./App.css";
+import Container from "./Container";
+import "./Container.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Hello, my name is Catarina Garcia and I'm a pharmacist!!!</h1>
-      </header>
+      <Container />
     </div>
   );
 }
