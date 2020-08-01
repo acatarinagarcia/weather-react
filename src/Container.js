@@ -1,8 +1,6 @@
 import React from "react";
 import Footer from "./Footer";
 import "./Container.css";
-import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Container() {
   let data = {
@@ -42,9 +40,11 @@ export default function Container() {
           <div className="col">
             <p className="text-right">
               Currently in...
-              <button className="my-location" type="submit" id="my-location">
-                <FontAwesomeIcon icon={faLocationArrow} />{" "}
-              </button>
+              <button
+                className="my-location"
+                type="submit"
+                id="my-location"
+              ></button>
             </p>
           </div>
         </div>
