@@ -4,27 +4,27 @@ body {
   font-family: "Domine", serif;
 }
 
-h1 {
+.Container h1 {
   font-size: 60px;
 }
 
-h2 {
+.Container h2 {
   font-size: 40px;
   margin-bottom: 40px;
 }
-ul {
+.Container ul {
   margin: 0;
   padding: 0;
   font-size: 18px;
 }
 
-li {
+.Container li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-img {
+.Container img {
   display: block;
   width: 70%;
   height: auto;

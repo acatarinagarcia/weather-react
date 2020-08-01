@@ -22,10 +22,10 @@ export default function Container() {
       <div className="weather-app">
         <div className="row location">
           <div className="col">
-            <a href="/" class="btn btn-dark active" id="celsius-link">
+            <a href="/" className="btn btn-dark active" id="celsius-link">
               ºC
             </a>{" "}
-            <a href="/" class="btn btn-dark" id="fahrenheit-link">
+            <a href="/" className="btn btn-dark" id="fahrenheit-link">
               ºF
             </a>
           </div>
@@ -34,7 +34,8 @@ export default function Container() {
               <input
                 type="search"
                 placeholder="Take me to..."
-                id="search-city"
+                className="search-city"
+                autofocus="on"
               />
               <input type="submit" value="GO!" />
             </form>
