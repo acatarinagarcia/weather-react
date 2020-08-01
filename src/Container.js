@@ -1,6 +1,8 @@
 import React from "react";
 import Footer from "./Footer";
 import "./Container.css";
+import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Container() {
   let data = {
@@ -18,7 +20,7 @@ export default function Container() {
   return (
     <div className="Container">
       <div className="weather-app">
-        <div className="row" id="location">
+        <div className="row location">
           <div className="col">
             <a href="/" class="btn btn-dark active" id="celsius-link">
               ºC
@@ -28,7 +30,7 @@ export default function Container() {
             </a>
           </div>
           <div className="col-5">
-            <form className="search-form" id="search-form">
+            <form className="search-form">
               <input
                 type="search"
                 placeholder="Take me to..."
@@ -40,16 +42,14 @@ export default function Container() {
           <div className="col">
             <p className="text-right">
               Currently in...
-              <button
-                className="my-location"
-                type="submit"
-                id="my-location"
-              ></button>
+              <button className="my-location" type="submit">
+                <FontAwesomeIcon icon={faLocationArrow} />{" "}
+              </button>
             </p>
           </div>
         </div>
 
-        <div className="row" id="now-forecast">
+        <div className="row">
           <div className="col-4 align-self-start">
             <h1>{data.city}</h1>
             <h2>{data.country}</h2>
@@ -64,24 +64,18 @@ export default function Container() {
               </li>
             </ul>
           </div>
-          <div className="col-4 align-self-center" id="current-temp">
-            {data.temperature}
-          </div>
+          <div className="col-4 align-self-center">{data.temperature}</div>
           <div className="col-4 align-self-end">
             <div className="todayicon">
-              <span className="current-date" id="current-date">
-                {data.date}
-              </span>
+              <span className="current-date">{data.date}</span>
               <img src={data.imgUrl} alt="" id="icon" />
-              <span id="current-description">{data.description}</span>
-              <p className="currentTime" id="current-time">
-                {data.time}
-              </p>
+              <span className="current-description">{data.description}</span>
+              <p className="current-time">{data.time}</p>
             </div>
           </div>
         </div>
-        <span id="forecast-banner" />
-        <div className="row weather-forecast" id="forecast">
+        <span className="forecast-banner" />
+        <div className="row weather-forecast">
           <div className="col">
             <span>13:00</span>
             <img src={data.imgUrl} alt="" id="icon" />

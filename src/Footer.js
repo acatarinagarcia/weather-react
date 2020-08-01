@@ -8,7 +8,7 @@ export default function Footer() {
       </a>{" "}
       and is{" "}
       <a
-        href="https://github.com/acatarinagarcia/My-awesome-app"
+        href="https://github.com/acatarinagarcia/weather-react"
         target="_blank"
       >
         open-sourced on GitHub
