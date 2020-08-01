@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <div className="Container">
-        <Container />
+        <Container defaultCity="Porto" />
       </div>
     </div>
   );
