@@ -13,7 +13,7 @@ export default function Container(props) {
     setWeatherData({
       ready: true,
       city: response.data.name,
-      country: "PT",
+      country: response.data.sys.country,
       temperature: Math.round(response.data.main.temp),
       date: "Thursday 16 Jul , 2020",
       description: response.data.weather[0].description,
