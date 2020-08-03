@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Footer from "./Footer";
 import "./Container.css";
+import FormattedDate from "./FormattedDate";
+import FormattedHour from "./FormattedHour";
+
 import axios from "axios";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,9 +18,8 @@ export default function Container(props) {
       city: response.data.name,
       country: response.data.sys.country,
       temperature: Math.round(response.data.main.temp),
-      date: "Thursday 16 Jul , 2020",
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      time: "21:13",
       imgUrl: "http://openweathermap.org/img/wn/01d@2x.png",
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
@@ -94,12 +96,17 @@ export default function Container(props) {
             </div>
             <div className="col-4 align-self-end">
               <div className="todayicon">
-                <span className="current-date">{weatherData.date}</span>
+                <span className="current-date">
+                  <FormattedDate date={weatherData.date} />
+                </span>
                 <img src={weatherData.imgUrl} alt="" id="icon" />
                 <span className="text-capitalize current-description">
                   {weatherData.description}
                 </span>
-                <p className="current-time">{weatherData.time}</p>
+                <p className="current-time">
+                  {" "}
+                  <FormattedHour date={weatherData.date} />
+                </p>
               </div>
             </div>
           </div>

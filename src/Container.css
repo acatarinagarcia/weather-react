@@ -36,6 +36,7 @@ footer {
   text-align: center;
   font-size: small;
   padding-bottom: 25px;
+  margin-top: 0;
 }
 
 .Container .weather-app {
