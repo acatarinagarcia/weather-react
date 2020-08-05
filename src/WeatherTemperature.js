@@ -20,15 +20,10 @@ export default function WeatherTemperature(props) {
   if (unit === "celsius") {
     return (
       <div className="WeatherTemperature">
-        <a href="/" className="btn btn-dark active" id="celsius-link">
+        <a href="/" className="btn btn-dark active">
           ºC
         </a>{" "}
-        <a
-          href="/"
-          onClick={convertToFahrenheit}
-          className="btn btn-dark"
-          id="fahrenheit-link"
-        >
+        <a href="/" onClick={convertToFahrenheit} className="btn btn-dark">
           ºF
         </a>
       </div>
@@ -36,15 +31,10 @@ export default function WeatherTemperature(props) {
   } else {
     return (
       <div className="WeatherTemperature">
-        <a href="/" className="btn btn-dark" id="celsius-link">
+        <a href="/" className="btn btn-dark">
           ºC
         </a>{" "}
-        <a
-          href="/"
-          onClick={convertToCelsius}
-          className="btn btn-dark active"
-          id="fahrenheit-link"
-        >
+        <a href="/" onClick={convertToCelsius} className="btn btn-dark active">
           ºF
         </a>
       </div>
