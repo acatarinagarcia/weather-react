@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import "./Container.css";
 import FormattedDate from "./FormattedDate";
 import FormattedHour from "./FormattedHour";
+import WeatherIcon from "./WeatherIcon";
 
 import axios from "axios";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
@@ -20,7 +21,7 @@ export default function Container(props) {
       temperature: Math.round(response.data.main.temp),
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      imgUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      icon: response.data.weather[0].icon,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
     });
@@ -99,7 +100,10 @@ export default function Container(props) {
                 <span className="current-date">
                   <FormattedDate date={weatherData.date} />
                 </span>
-                <img src={weatherData.imgUrl} alt="" id="icon" />
+                <div>
+                  <WeatherIcon code={weatherData.icon} />
+                </div>
+
                 <span className="text-capitalize current-description">
                   {weatherData.description}
                 </span>

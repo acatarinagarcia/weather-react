@@ -90,9 +90,10 @@ footer {
   font-weight: bolder;
   line-height: 30px;
 }
-.Container .weather-icon {
+.Container canvas {
   font-size: 50px;
   text-align: center;
+  margin-top: 10px;
 }
 
 .Container .forecast-banner {
