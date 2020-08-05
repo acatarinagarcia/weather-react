@@ -4,6 +4,7 @@ import "./Container.css";
 import FormattedDate from "./FormattedDate";
 import FormattedHour from "./FormattedHour";
 import WeatherIcon from "./WeatherIcon";
+import WeatherTemperature from "./WeatherTemperature";
 
 import axios from "axios";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
@@ -48,12 +49,7 @@ export default function Container(props) {
         <div className="weather-app">
           <div className="row location">
             <div className="col">
-              <a href="/" className="btn btn-dark active" id="celsius-link">
-                ºC
-              </a>{" "}
-              <a href="/" className="btn btn-dark" id="fahrenheit-link">
-                ºF
-              </a>
+              <WeatherTemperature celsius={weatherData.temperature} />
             </div>
             <div className="col-5">
               <form onSubmit={handleSubmit} className="search-form">
