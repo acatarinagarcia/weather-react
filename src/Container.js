@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Container(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [unit, setUnit] = useState("celsius");
 
   function handleResponse(response) {
     setWeatherData({
@@ -24,7 +25,7 @@ export default function Container(props) {
       description: response.data.weather[0].description,
       icon: response.data.weather[0].icon,
       humidity: response.data.main.humidity,
-      wind: response.data.wind.speed,
+      wind: Math.round(response.data.wind.speed),
     });
   }
 
@@ -35,6 +36,16 @@ export default function Container(props) {
 
   function handleCityChange(event) {
     setCity(event.target.value);
+  }
+
+  function showCelsius(event) {
+    event.preventDefault();
+    setUnit("celsius");
+  }
+
+  function showFahrenheit(event) {
+    event.preventDefault();
+    setUnit("fahrenheit");
   }
 
   function search() {
@@ -49,7 +60,14 @@ export default function Container(props) {
         <div className="weather-app">
           <div className="row location">
             <div className="col">
-              <WeatherTemperature celsius={weatherData.temperature} />
+              <div className="button">
+                <a href="/" className="btn btn-dark" onClick={showCelsius}>
+                  ºC
+                </a>{" "}
+                <a href="/" onClick={showFahrenheit} className="btn btn-dark">
+                  ºF
+                </a>
+              </div>
             </div>
             <div className="col-5">
               <form onSubmit={handleSubmit} className="search-form">
@@ -88,9 +106,7 @@ export default function Container(props) {
                 </li>
               </ul>
             </div>
-            <div className="col-4 align-self-center">
-              {weatherData.temperature}
-            </div>
+            <WeatherTemperature temp={weatherData.temperature} unit={unit} />
             <div className="col-4 align-self-end">
               <div className="todayicon">
                 <span className="current-date">
