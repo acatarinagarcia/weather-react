@@ -5,6 +5,7 @@ import FormattedDate from "./FormattedDate";
 import FormattedHour from "./FormattedHour";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
+import WeatherForecast from "./WeatherForecast";
 
 import axios from "axios";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
@@ -48,9 +49,20 @@ export default function Container(props) {
     setUnit("fahrenheit");
   }
 
+  function displayLocation(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let latitude = position.coords.latitude;
+      let longitude = position.coords.longitude;
+      let apiKey = "994cfaf2a113ce08ce060fdaaac64122";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+      axios.get(apiUrl).then(handleResponse);
+    });
+  }
+
   function search() {
     const apiKey = "994cfaf2a113ce08ce060fdaaac64122";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
@@ -75,7 +87,7 @@ export default function Container(props) {
                   type="search"
                   placeholder="Take me to..."
                   className="search-city"
-                  autofocus="on"
+                  autofocus="off"
                   onChange={handleCityChange}
                 />
                 <input type="submit" value="GO!" />
@@ -84,7 +96,11 @@ export default function Container(props) {
             <div className="col">
               <p className="text-right">
                 Currently in...
-                <button className="my-location" type="submit">
+                <button
+                  className="my-location"
+                  type="submit"
+                  onClick={displayLocation}
+                >
                   <FontAwesomeIcon icon={faLocationArrow} />{" "}
                 </button>
               </p>
@@ -115,7 +131,6 @@ export default function Container(props) {
                 <div>
                   <WeatherIcon code={weatherData.icon} />
                 </div>
-
                 <span className="text-capitalize current-description">
                   {weatherData.description}
                 </span>
@@ -127,43 +142,7 @@ export default function Container(props) {
             </div>
           </div>
           <span className="forecast-banner" />
-          <div className="row weather-forecast">
-            <div className="col">
-              <span>13:00</span>
-              <img src={weatherData.imgUrl} alt="" id="icon" />
-              <div className="temp">
-                30°|<strong>30°</strong>
-              </div>
-            </div>
-            <div className="col">
-              <span>16:00</span>
-              <img src={weatherData.imgUrl} alt="" id="icon" />
-              <div className="temp">
-                28°|<strong>29°</strong>
-              </div>
-            </div>
-            <div class="col">
-              <span>16:00</span>
-              <img src={weatherData.imgUrl} alt="" id="icon" />
-              <div className="temp">
-                28°|<strong>29°</strong>
-              </div>
-            </div>
-            <div class="col">
-              <span>16:00</span>
-              <img src={weatherData.imgUrl} alt="" id="icon" />
-              <div className="temp">
-                28°|<strong>29°</strong>
-              </div>
-            </div>
-            <div class="col">
-              <span>16:00</span>
-              <img src={weatherData.imgUrl} alt="" id="icon" />
-              <div className="temp">
-                28°|<strong>29°</strong>
-              </div>
-            </div>
-          </div>
+          <WeatherForecast city={weatherData.city} />
         </div>
         <Footer />
       </div>
