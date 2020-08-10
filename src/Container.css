@@ -110,6 +110,7 @@ footer {
 
 .weather-forecast canvas {
   height: 75px;
+  display: inline-block;
 }
 
 li::first-letter {
