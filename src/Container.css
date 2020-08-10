@@ -108,12 +108,16 @@ footer {
   font-weight: bolder;
 }
 
+.weather-forecast canvas {
+  height: 75px;
+}
+
 li::first-letter {
   text-transform: capitalize;
 }
 
 .current-description {
-  text-shadow: 2px 2px 20px black;
+  text-shadow: 2px 2px 25px black;
 }
 
 .weather-app .active {
