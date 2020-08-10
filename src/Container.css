@@ -128,3 +128,7 @@ li::first-letter {
 .weather-app .active:hover {
   text-decoration: none;
 }
+
+.weather-forecast .col:hover {
+  transform: scale(1.05);
+}
