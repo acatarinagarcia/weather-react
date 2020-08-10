@@ -5,7 +5,7 @@ export default function WeatherForecastPreview(props) {
   function hours() {
     let date = new Date(props.data.dt * 1000);
     let hours = date.getHours();
-    return `${hours}:00`;
+    return `0${hours}:00`;
   }
   function temperatureMax() {
     let temperatureMax = Math.round(props.data.main.temp_max);

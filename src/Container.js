@@ -5,7 +5,7 @@ import FormattedDate from "./FormattedDate";
 import FormattedHour from "./FormattedHour";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
-import WeatherForecast from "./WeatherForecast";
+import WeatherForecastPreview from "./WeatherForecastPreview";
 
 import axios from "axios";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,7 @@ export default function Container(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
   const [unit, setUnit] = useState("celsius");
+  const [forecast, setForecast] = useState({ ready: false });
 
   function handleResponse(response) {
     setWeatherData({
@@ -27,6 +28,12 @@ export default function Container(props) {
       icon: response.data.weather[0].icon,
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
+    });
+  }
+  function handleForecastResponse(response) {
+    setForecast({
+      ready: true,
+      data: response.data,
     });
   }
 
@@ -57,16 +64,20 @@ export default function Container(props) {
       let apiKey = "994cfaf2a113ce08ce060fdaaac64122";
       let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
       axios.get(apiUrl).then(handleResponse);
+      apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+      axios.get(apiUrl).then(handleForecastResponse);
     });
   }
 
   function search() {
-    const apiKey = "994cfaf2a113ce08ce060fdaaac64122";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiKey = "994cfaf2a113ce08ce060fdaaac64122";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleForecastResponse);
   }
 
-  if (weatherData.ready) {
+  if (weatherData.ready && forecast.ready) {
     return (
       <div className="Container">
         <div className="weather-app">
@@ -142,7 +153,13 @@ export default function Container(props) {
             </div>
           </div>
           <span className="forecast-banner" />
-          <WeatherForecast city={weatherData.city} />
+          <div className="row weather-forecast">
+            <WeatherForecastPreview data={forecast.data.list[0]} />
+            <WeatherForecastPreview data={forecast.data.list[1]} />
+            <WeatherForecastPreview data={forecast.data.list[2]} />
+            <WeatherForecastPreview data={forecast.data.list[3]} />
+            <WeatherForecastPreview data={forecast.data.list[4]} />
+          </div>
         </div>
         <Footer />
       </div>
