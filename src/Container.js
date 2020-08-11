@@ -6,7 +6,6 @@ import FormattedHour from "./FormattedHour";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
 import WeatherForecastPreview from "./WeatherForecastPreview";
-
 import axios from "axios";
 import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -166,6 +165,6 @@ export default function Container(props) {
     );
   } else {
     search();
-    return "Loading...";
+    return <div>Loading...Please wait... </div>;
   }
 }
