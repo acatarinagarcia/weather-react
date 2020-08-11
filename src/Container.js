@@ -106,7 +106,7 @@ export default function Container(props) {
             </div>
             <div className="col">
               <p className="text-right">
-                Currently in...
+                <strong>Currently in...</strong>
                 <button
                   className="my-location"
                   type="submit"

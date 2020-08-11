@@ -91,7 +91,7 @@ footer {
   line-height: 30px;
 }
 .Container canvas {
-  font-size: 50px;
+  font-size: 70px;
   text-align: center;
 }
 
@@ -103,12 +103,12 @@ footer {
   font-size: 15px;
 }
 
-.weather-forecast span {
+.Container .weather-forecast span {
   font-size: 18px;
   font-weight: bolder;
 }
 
-.weather-forecast canvas {
+.Container .weather-forecast canvas {
   height: 75px;
   display: inline-block;
 }
